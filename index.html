@@ -178,6 +178,42 @@
     }
 
     /* GALLERY */
+    /* 动画静帧分隔装饰 */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 60px 0 20px;
+    }
+    .divider-line {
+      flex: 1;
+      max-width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-hi), transparent);
+    }
+    .divider-ornament {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ornament-dot {
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+    .ornament-star {
+      font-size: 14px;
+      color: var(--accent);
+      animation: twinkle 2s ease-in-out infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
     .gallery-section {
       padding: 100px 0;
       border-top: 1px solid var(--border);
@@ -651,8 +687,19 @@
         <div class="works-grid featured-grid" id="animGrid"></div>
       </div>
 
+      <!-- 动画与静帧分隔装饰 -->
+      <div class="section-divider">
+        <div class="divider-line"></div>
+        <div class="divider-ornament">
+          <span class="ornament-dot"></span>
+          <span class="ornament-star">✦</span>
+          <span class="ornament-dot"></span>
+        </div>
+        <div class="divider-line"></div>
+      </div>
+
       <!-- 静帧精选 -->
-      <div class="cat-strip reveal" style="margin-top:60px">
+      <div class="cat-strip reveal" style="margin-top:100px">
         <div class="cat-label-row">
           <span class="cat-num">02 —</span>
           <span class="cat-title">静帧渲染</span>
