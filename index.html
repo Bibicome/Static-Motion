@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>原索宇 · 3D作品集</title>
+  <title>Allen · 原索宇 · 3D作品集</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -125,11 +125,25 @@
       text-transform: uppercase; color: var(--accent);
     }
     .hero-name {
-      font-family: var(--ff-head); font-size: clamp(60px,9vw,140px);
-      font-weight: 300; line-height: .92; letter-spacing: -.02em; margin-bottom: 36px;
+      display: flex;
+      flex-direction: column;
+      font-weight: 300; letter-spacing: -.02em; margin-bottom: 36px;
     }
-    .hero-name em { font-style: normal; color: var(--accent); }
-    .hero-name .thin { font-weight: 300; color: var(--muted); }
+    .hero-en-name {
+      font-family: var(--ff-head);
+      font-size: clamp(32px,5vw,72px);
+      color: var(--accent);
+      letter-spacing: .15em;
+      font-weight: 400;
+      margin-bottom: -8px;
+    }
+    .hero-cn-name {
+      font-family: var(--ff-head);
+      font-size: clamp(60px,9vw,140px);
+      line-height: .92;
+    }
+    .hero-cn-name em { font-style: normal; color: var(--accent); }
+    .hero-cn-name .thin { font-weight: 300; color: var(--muted); }
     .hero-desc {
       font-family: var(--ff-body); font-size: 15px; color: var(--muted);
       max-width: 420px; line-height: 1.8; margin-bottom: 48px;
@@ -608,7 +622,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">原索宇<em>·</em>3D</a>
+    <a href="#" class="nav-logo">Allen<em>·</em>3D</a>
     <ul class="nav-menu">
       <li><a href="#gallery">作品</a></li>
       <li><a href="#about">关于</a></li>
@@ -629,7 +643,8 @@
         <span class="hero-label-text">三维视觉设计师 · AIGC 创作者</span>
       </div>
       <h1 class="hero-name">
-        <span class="thin">原</span><em>索宇</em>
+        <span class="hero-en-name">Allen</span>
+        <span class="hero-cn-name"><span class="thin">原</span><em>索宇</em></span>
       </h1>
       <p class="hero-desc">
         深圳 · 三维视觉设计师<br>
@@ -835,7 +850,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <span class="footer-copy">© 2026 <span class="footer-accent">原索宇</span> · All Rights Reserved</span>
+    <span class="footer-copy">© 2026 <span class="footer-accent">Allen</span> · All Rights Reserved</span>
     <span class="footer-copy">深圳 · 3D 设计</span>
   </footer>
 
