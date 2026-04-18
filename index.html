@@ -35,6 +35,7 @@
       line-height: 1.7;
       overflow-x: hidden;
       cursor: none;
+      user-select: none;
     }
 
     /* Custom Cursor */
@@ -58,6 +59,7 @@
     .slider-wrap {
       position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
       z-index: 50; display: flex; flex-direction: column; align-items: center; gap: 16px;
+      user-select: none;
     }
     .slider-label {
       font-family: var(--ff-mono); font-size: 8px; letter-spacing: .16em;
@@ -106,7 +108,7 @@
       letter-spacing: .06em; color: var(--text); text-decoration: none;
       transition: color .25s, text-shadow .25s, transform .25s;
       animation: logoIn .7s cubic-bezier(.22,.68,0,1.2) both;
-      display: inline-block;
+      display: inline-block; user-select: none;
     }
     .nav-logo em { color: var(--accent); font-style: italic; }
     .nav-logo:hover {
@@ -130,7 +132,7 @@
     .nav-menu a {
       font-family: var(--ff-mono); font-size: 10px; letter-spacing: .18em;
       text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s;
-      white-space: nowrap;
+      white-space: nowrap; user-select: none;
     }
     .nav-menu a:hover { color: var(--accent); }
     .nav-status {
@@ -156,6 +158,7 @@
       width: 38px; height: 28px;
       padding: 0;
       border-radius: 2px; cursor: none;
+      user-select: none;
       display: flex; align-items: center; justify-content: center;
       transition: color .2s, border-color .2s, background .2s;
       white-space: nowrap;
@@ -255,7 +258,7 @@
       text-transform: uppercase; text-decoration: none; color: var(--bg);
       background: var(--accent); padding: 14px 24px; border-radius: 2px;
       transition: background .25s, transform .2s;
-      min-width: 160px; text-align: center;
+      min-width: 160px; text-align: center; user-select: none;
     }
     .cta-btn:hover { background: var(--accent2); transform: translateY(-1px); }
     .cta-link {
@@ -390,7 +393,7 @@
 
     /* Work Card */
     .work-card {
-      cursor: none; position: relative;
+      cursor: none; position: relative; user-select: none;
       border-radius: 6px; overflow: hidden;
       border: 1px solid var(--border);
       transition: transform .38s cubic-bezier(.22,.68,0,1.2),
@@ -542,6 +545,22 @@
     .footer-copy { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .12em; color: var(--muted); }
     .footer-accent { color: var(--accent); }
 
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: var(--bg);
+      font-family: var(--ff-mono); font-size: 11px; letter-spacing: .12em;
+      padding: 10px 20px; border-radius: 4px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .3s ease, transform .3s ease;
+      z-index: 9999; white-space: nowrap;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* Copyable contact */
+    .copyable { cursor: pointer; transition: color .2s; }
+    .copyable:hover { color: var(--accent); }
+
     /* ── Featured grid ── */
     .featured-grid { margin-bottom: 48px; }
 
@@ -550,7 +569,7 @@
       aspect-ratio: 4/3;
       border-radius: 6px;
       overflow: hidden;
-      cursor: none;
+      cursor: none; user-select: none;
     }
     .more-bg {
       position: absolute; inset: 0;
@@ -928,8 +947,8 @@
     <div class="contact-grid reveal reveal-d1">
       <div>
         <div class="contact-col-label" data-i18n="contact.col1">联系方式</div>
-        <div class="contact-item"><span class="ci-key" data-i18n="contact.email">邮箱</span><span class="ci-val"><a href="mailto:979916076@qq.com">979916076@qq.com</a></span></div>
-        <div class="contact-item"><span class="ci-key" data-i18n="contact.phone">电话</span><span class="ci-val">131 6932 3823</span></div>
+        <div class="contact-item"><span class="ci-key" data-i18n="contact.email">邮箱</span><span class="ci-val copyable" data-copy="979916076@qq.com"><a href="mailto:979916076@qq.com">979916076@qq.com</a></span></div>
+        <div class="contact-item"><span class="ci-key" data-i18n="contact.phone">电话</span><span class="ci-val copyable" data-copy="13169323823">131 6932 3823</span></div>
       </div>
       <div>
         <div class="contact-col-label" data-i18n="contact.col2">位置</div>
@@ -997,6 +1016,9 @@
       </div>
     </div>
   </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">已复制 ✓</div>
 
   <!-- LIGHTBOX -->
   <div id="lightbox">
@@ -1494,6 +1516,35 @@
 
     document.getElementById('langToggle').addEventListener('click', () => {
       applyLang(currentLang === 'zh' ? 'en' : 'zh');
+    });
+
+    // ── Copy to Clipboard ─────────────────────────────────────
+    const toast = document.getElementById('toast');
+    let toastTimer = null;
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=> toast.classList.remove('show'), 2000);
+    }
+    document.querySelectorAll('.copyable').forEach(el => {
+      el.addEventListener('click', () => {
+        const text = el.dataset.copy;
+        if(text) {
+          navigator.clipboard.writeText(text).then(() => {
+            showToast('已复制 ✓');
+          }).catch(() => {
+            // fallback
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast('已复制 ✓');
+          });
+        }
+      });
     });
 
     // ── Theme Toggle ──────────────────────────────────────────
