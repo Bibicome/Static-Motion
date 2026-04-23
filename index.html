@@ -701,30 +701,31 @@
     .pm-cat-hr { flex: 1; height: 1px; background: var(--border); }
     .pm-cat-type { font-family: var(--ff-mono); font-size: 8px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); padding: 3px 8px; }
 
-    /* ── Pinterest 瀑布流（仅静帧弹窗）── */
-    #stillModal .pm-cat-strip .works-grid {
+    /* ── Pinterest 瀑布流（弹窗通用）── */
+    .pm-cat-strip .works-grid {
       display: block;
       columns: 3;
       column-gap: 12px;
       margin-bottom: 40px;
     }
-    #stillModal .pm-cat-strip .works-grid .work-card {
+    .pm-cat-strip .works-grid .work-card {
       break-inside: avoid;
       display: inline-block;
       width: 100%;
       margin-bottom: 12px;
     }
-    /* 静帧图片高度自适应，不固定 aspect-ratio */
-    #stillModal .pm-cat-strip .works-grid .work-thumb {
+    /* 图片高度自适应，不固定 aspect-ratio */
+    .pm-cat-strip .works-grid .work-thumb {
       aspect-ratio: unset;
       height: auto;
     }
-    #stillModal .pm-cat-strip .works-grid .work-thumb img {
+    .pm-cat-strip .works-grid .work-thumb img,
+    .pm-cat-strip .works-grid .work-thumb video {
       width: 100%; height: auto; display: block;
     }
-    @media(max-width:1000px){ #stillModal .pm-cat-strip .works-grid { columns: 2; } }
-    @media(max-width:560px)  { #stillModal .pm-cat-strip .works-grid { columns: 2; column-gap: 8px; }
-      #stillModal .pm-cat-strip .works-grid .work-card { margin-bottom: 8px; }
+    @media(max-width:1000px){ .pm-cat-strip .works-grid { columns: 2; } }
+    @media(max-width:560px)  { .pm-cat-strip .works-grid { columns: 2; column-gap: 8px; }
+      .pm-cat-strip .works-grid .work-card { margin-bottom: 8px; }
     }
 
     /* Lightbox */
@@ -1230,6 +1231,11 @@
       { idx:5, title:'电动牙刷动态', tags:'C4D · AIGC', vid:'动画/电动牙刷动态/电动牙刷动态_H264.mp4', img:'动画/电动牙刷动态/封面.jpg' },
       { idx:6, title:'金属手表动态', tags:'3ds Max · 产品动画', vid:'动画/金属手表动态/金属手表动态_H264.mp4', img:'动画/金属手表动态/封面.jpg' },
       { idx:7, title:'手机壳动态', tags:'C4D · 产品动画', vid:'动画/手机壳动态/手机壳动态_H264.mp4', img:'动画/手机壳动态/封面.jpg' },
+      { idx:8, title:'电子烟产品动画', tags:'C4D · 产品动画', vid:'动画/电子烟产品动画/电子烟产品动画.mp4', img:'动画/电子烟产品动画/封面.jpg' },
+      { idx:9, title:'蜂蜜流下', tags:'C4D · 流体动画', vid:'动画/蜂蜜流下/蜂蜜流下.mp4', img:'动画/蜂蜜流下/封面.jpg' },
+      { idx:10, title:'划过透明布料', tags:'C4D · 布料动画', vid:'动画/划过透明布料/滑过透明布料.mp4', img:'动画/划过透明布料/封面.jpg' },
+      { idx:11, title:'手机产品动画', tags:'C4D · 产品动画', vid:'动画/手机产品动画/手机产品.mp4', img:'动画/手机产品动画/总合成724.jpg' },
+      { idx:12, title:'砖块旋转', tags:'C4D · 特效动画', vid:'动画/砖块旋转/砖块旋转.mp4', img:'动画/砖块旋转/封面.jpg' },
     ];
 
     // 静帧合集（不在主页显示的）
