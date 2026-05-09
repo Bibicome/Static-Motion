@@ -1221,21 +1221,23 @@
     const pmAnimGrid = document.getElementById('pmAnimGrid');
     const pmStillGrid = document.getElementById('pmStillGrid');
 
-    // 所有动画数据（idx 0-7）
+    // 所有动画数据（idx 0-14）
     const allAnimData = [
-      { idx:0, title:'斐乐鞋子动态', tags:'3ds Max · 产品动画', vid:'动画/斐乐鞋子动态/斐乐鞋子产品动画_H264.mp4', img:'动画/斐乐鞋子动态/封面.jpg' },
-      { idx:1, title:'雅思兰黛化妆品动态', tags:'C4D · 产品动画', vid:'动画/雅思兰黛化妆品动态/雅思兰黛化妆品动画_H264.mp4', img:'动画/雅思兰黛化妆品动态/封面.jpg' },
-      { idx:2, title:'烟油笔动态', tags:'C4D · 产品动画', vid:'动画/烟油笔动态/烟油笔动画_H264.mp4', img:'动画/烟油笔动态/封面.jpg' },
-      { idx:3, title:'鼠标动态', tags:'C4D · 产品动画', vid:'动画/鼠标动态/鼠标动态_H264.mp4', img:'动画/鼠标动态/封面.jpg' },
-      { idx:4, title:'骨传导耳机动态', tags:'C4D · 产品动画', vid:'动画/骨传导耳机动态/骨传导耳机动态_H264.mp4', img:'动画/骨传导耳机动态/封面.jpg' },
-      { idx:5, title:'电动牙刷动态', tags:'C4D · AIGC', vid:'动画/电动牙刷动态/电动牙刷动态_H264.mp4', img:'动画/电动牙刷动态/封面.jpg' },
-      { idx:6, title:'金属手表动态', tags:'3ds Max · 产品动画', vid:'动画/金属手表动态/金属手表动态_H264.mp4', img:'动画/金属手表动态/封面.jpg' },
-      { idx:7, title:'手机壳动态', tags:'C4D · 产品动画', vid:'动画/手机壳动态/手机壳动态_H264.mp4', img:'动画/手机壳动态/封面.jpg' },
-      { idx:8, title:'电子烟产品动画', tags:'C4D · 产品动画', vid:'动画/电子烟产品动画/电子烟产品动画.mp4', img:'动画/电子烟产品动画/封面.jpg' },
-      { idx:9, title:'蜂蜜流下', tags:'C4D · 流体动画', vid:'动画/蜂蜜流下/蜂蜜流下.mp4', img:'动画/蜂蜜流下/封面.jpg' },
-      { idx:10, title:'划过透明布料', tags:'C4D · 布料动画', vid:'动画/划过透明布料/滑过透明布料.mp4', img:'动画/划过透明布料/封面.jpg' },
-      { idx:11, title:'手机产品动画', tags:'C4D · 产品动画', vid:'动画/手机产品动画/手机产品.mp4', img:'动画/手机产品动画/总合成724.jpg' },
-      { idx:12, title:'砖块旋转', tags:'C4D · 特效动画', vid:'动画/砖块旋转/砖块旋转.mp4', img:'动画/砖块旋转/封面.jpg' },
+      { idx:0, title:'甜甜圈产品动画', tags:'C4D · 产品动画', vid:'动画/甜甜圈产品动画/甜甜圈产品动画', img:'动画/甜甜圈产品动画/封面' },
+      { idx:1, title:'甜甜圈产品动画-2', tags:'C4D · 产品动画', vid:'动画/甜甜圈产品动画-2/甜甜圈产品动画-2', img:'动画/甜甜圈产品动画-2/封面' },
+      { idx:2, title:'斐乐鞋子动态', tags:'3ds Max · 产品动画', vid:'动画/斐乐鞋子动态/斐乐鞋子产品动画_H264.mp4', img:'动画/斐乐鞋子动态/封面.jpg' },
+      { idx:3, title:'雅思兰黛化妆品动态', tags:'C4D · 产品动画', vid:'动画/雅思兰黛化妆品动态/雅思兰黛化妆品动画_H264.mp4', img:'动画/雅思兰黛化妆品动态/封面.jpg' },
+      { idx:4, title:'烟油笔动态', tags:'C4D · 产品动画', vid:'动画/烟油笔动态/烟油笔动画_H264.mp4', img:'动画/烟油笔动态/封面.jpg' },
+      { idx:5, title:'鼠标动态', tags:'C4D · 产品动画', vid:'动画/鼠标动态/鼠标动态_H264.mp4', img:'动画/鼠标动态/封面.jpg' },
+      { idx:6, title:'骨传导耳机动态', tags:'C4D · 产品动画', vid:'动画/骨传导耳机动态/骨传导耳机动态_H264.mp4', img:'动画/骨传导耳机动态/封面.jpg' },
+      { idx:7, title:'电动牙刷动态', tags:'C4D · AIGC', vid:'动画/电动牙刷动态/电动牙刷动态_H264.mp4', img:'动画/电动牙刷动态/封面.jpg' },
+      { idx:8, title:'金属手表动态', tags:'3ds Max · 产品动画', vid:'动画/金属手表动态/金属手表动态_H264.mp4', img:'动画/金属手表动态/封面.jpg' },
+      { idx:9, title:'手机壳动态', tags:'C4D · 产品动画', vid:'动画/手机壳动态/手机壳动态_H264.mp4', img:'动画/手机壳动态/封面.jpg' },
+      { idx:10, title:'电子烟产品动画', tags:'C4D · 产品动画', vid:'动画/电子烟产品动画/电子烟产品动画.mp4', img:'动画/电子烟产品动画/封面.jpg' },
+      { idx:11, title:'蜂蜜流下', tags:'C4D · 流体动画', vid:'动画/蜂蜜流下/蜂蜜流下.mp4', img:'动画/蜂蜜流下/封面.jpg' },
+      { idx:12, title:'划过透明布料', tags:'C4D · 布料动画', vid:'动画/划过透明布料/滑过透明布料.mp4', img:'动画/划过透明布料/封面.jpg' },
+      { idx:13, title:'手机产品动画', tags:'C4D · 产品动画', vid:'动画/手机产品动画/手机产品.mp4', img:'动画/手机产品动画/总合成724.jpg' },
+      { idx:14, title:'砖块旋转', tags:'C4D · 特效动画', vid:'动画/砖块旋转/砖块旋转.mp4', img:'动画/砖块旋转/封面.jpg' },
     ];
 
     // 静帧合集（不在主页显示的）
@@ -1278,6 +1280,15 @@
       { idx:46, title:'圆铁罐-4', tags:'C4D · 产品渲染', img:'静帧/圆铁罐-4.jpg' },
       { idx:47, title:'2026-03-31', tags:'C4D · 产品渲染', img:'静帧/2026-03-31 (2).png' },
       { idx:48, title:'2026-04-13', tags:'C4D · 产品渲染', img:'静帧/2026-04-13.png' },
+      { idx:49, title:'5', tags:'C4D · 产品渲染', img:'静帧/5.png' },
+      { idx:50, title:'6', tags:'C4D · 产品渲染', img:'静帧/6.png' },
+      { idx:51, title:'7', tags:'C4D · 产品渲染', img:'静帧/7.png' },
+      { idx:52, title:'8', tags:'C4D · 产品渲染', img:'静帧/8.png' },
+      { idx:53, title:'CT0330', tags:'C4D · 产品渲染', img:'静帧/CT0330.jpg' },
+      { idx:54, title:'Gemini 1', tags:'AIGC · AI生成', img:'静帧/Gemini_Generated_Image_1csyre1csyre1csy.png' },
+      { idx:55, title:'Gemini 2', tags:'AIGC · AI生成', img:'静帧/Gemini_Generated_Image_oyy9z9oyy9z9oyy9.png' },
+      { idx:56, title:'场景', tags:'C4D · 场景渲染', img:'静帧/场景.png' },
+      { idx:57, title:'DeMain 静帧', tags:'3ds Max · 产品渲染', img:'静帧/总_DeMain_0000.jpg' },
     ];
 
     function buildStillCard(data){
@@ -1388,7 +1399,7 @@
     const featuredCards = Array.from(document.querySelectorAll('.featured-card'));
     // 排除 more-card（没有 data-index）
     const allLBCards = Array.from(document.querySelectorAll('.work-card[data-index]'));
-    // 动画总数 8 + 静帧总数 16
+    // 动画总数 15 + 静帧总数 47
     document.getElementById('animTotal').textContent = allAnimData.length;
     document.getElementById('stillTotal').textContent = portfolioStillHTML.length;
     document.getElementById('sectionTotal').textContent = allLBCards.length;
