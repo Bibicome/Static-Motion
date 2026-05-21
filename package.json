@@ -1,0 +1,18 @@
+{
+  "name": "static-motion",
+  "version": "1.0.0",
+  "description": "3D Motion & Stills Portfolio | Specialized in Industrial Design and Packaging Structures",
+  "type": "module",
+  "scripts": {
+    "postinstall": "mkdir -p vendor && cp node_modules/@vercel/speed-insights/dist/index.mjs vendor/speed-insights.mjs",
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build required'",
+    "preview": "npx serve ."
+  },
+  "keywords": ["portfolio", "3d", "motion", "design"],
+  "author": "Allen",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/speed-insights": "^1.0.12"
+  }
+}

@@ -1098,7 +1098,7 @@
   </div>
 
   <script>
-    // ── Hero Particles ───────────────────────────────────────
+    // ── Hero Particles ───────────���───────────────────────────
     (function initParticles(){
       const canvas = document.getElementById('heroParticles');
       if(!canvas) return;
@@ -1242,7 +1242,7 @@
 
     // 静帧合集（不在主页显示的）
     const portfolioStillHTML = [
-      { idx:11, title:'散DeMain', tags:'3ds Max · 产品渲染', img:'静帧/散DeMain0000.webp' },
+      { idx:11, title:'散DeMain', tags:'3ds Max · ������渲染', img:'静帧/散DeMain0000.webp' },
       { idx:12, title:'最终出图', tags:'C4D · 产品渲染', img:'静帧/最终出图.webp' },
       { idx:13, title:'最终出图(无产品)', tags:'C4D · 产品渲染', img:'静帧/最终出图(无产品).webp' },
       { idx:14, title:'并排局部', tags:'C4D · 产品渲染', img:'静帧/并排局部.webp' },
@@ -1764,6 +1764,12 @@
 
     window.addEventListener('scroll', updateSlider, {passive:true});
     updateSlider();
+  </script>
+
+  <!-- Vercel Speed Insights -->
+  <script type="module">
+    import { injectSpeedInsights } from './vendor/speed-insights.mjs';
+    injectSpeedInsights();
   </script>
 
 </body>
