@@ -506,6 +506,14 @@
       border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2;
     }
     .badge-vid svg { width: 9px; height: 9px; fill: var(--accent); }
+    .badge-ai {
+      position: absolute; top: 12px; right: 12px;
+      font-family: var(--ff-mono); font-size: 9px; font-weight: 700;
+      letter-spacing: .12em; color: #0a0a0a;
+      background: linear-gradient(135deg, #c9a84c, #e6c974);
+      padding: 3px 8px; border-radius: 3px; z-index: 3;
+      box-shadow: 0 0 12px rgba(201,168,76,.35);
+    }
 
     .work-overlay {
       position: absolute; inset: 0; background: rgba(9,9,12,.78);
@@ -897,20 +905,12 @@
               <span class="badge-type">静帧</span>
               <div class="work-overlay"><div class="overlay-icon">+</div><div class="overlay-text">查看大图</div></div>
             </div>
-            <div class="work-info-bar">
-              <span class="work-info-name">DeMain 静帧渲染</span>
-              <span class="work-info-tags">3ds Max <span>·</span> 产品渲染</span>
-            </div>
           </div>
           <div class="work-card featured-card" data-index="6" data-title="最终渲染" data-tags="C4D · 产品渲染" data-isvid="0">
             <div class="work-thumb">
               <img src="静帧/最终渲染.webp" alt="最终渲染" loading="lazy">
               <span class="badge-type">静帧</span>
               <div class="work-overlay"><div class="overlay-icon">+</div><div class="overlay-text">查看大图</div></div>
-            </div>
-            <div class="work-info-bar">
-              <span class="work-info-name">最终渲染</span>
-              <span class="work-info-tags">C4D <span>·</span> 产品渲染</span>
             </div>
           </div>
           <div class="work-card featured-card" data-index="7" data-title="Mint Tin CR" data-tags="3ds Max · 包装渲染" data-isvid="0">
@@ -919,10 +919,6 @@
               <span class="badge-type">静帧</span>
               <div class="work-overlay"><div class="overlay-icon">+</div><div class="overlay-text">查看大图</div></div>
             </div>
-            <div class="work-info-bar">
-              <span class="work-info-name">Mint Tin CR</span>
-              <span class="work-info-tags">3ds Max <span>·</span> 包装渲染</span>
-            </div>
           </div>
           <div class="work-card featured-card" data-index="8" data-title="Round Tins" data-tags="3ds Max · 包装渲染" data-isvid="0">
             <div class="work-thumb">
@@ -930,20 +926,12 @@
               <span class="badge-type">静帧</span>
               <div class="work-overlay"><div class="overlay-icon">+</div><div class="overlay-text">查看大图</div></div>
             </div>
-            <div class="work-info-bar">
-              <span class="work-info-name">Round Tins</span>
-              <span class="work-info-tags">3ds Max <span>·</span> 包装渲染</span>
-            </div>
           </div>
           <div class="work-card featured-card" data-index="9" data-title="CT0330 渲染" data-tags="C4D · 产品渲染" data-isvid="0">
             <div class="work-thumb">
               <img src="静帧/CT0330.webp" alt="CT0330" loading="lazy">
               <span class="badge-type">静帧</span>
               <div class="work-overlay"><div class="overlay-icon">+</div><div class="overlay-text">查看大图</div></div>
-            </div>
-            <div class="work-info-bar">
-              <span class="work-info-name">CT0330 渲染</span>
-              <span class="work-info-tags">C4D <span>·</span> 产品渲染</span>
             </div>
           </div>
           <!-- 更多静帧入口卡片 -->
@@ -1239,99 +1227,80 @@
       { idx:13, title:'手机产品动画', tags:'C4D · 产品动画', vid:'动画/手机产品动画/手机产品.webm', img:'动画/手机产品动画/总合成724.webp' },
       { idx:14, title:'砖块旋转', tags:'C4D · 特效动画', vid:'动画/砖块旋转/砖块旋转.webm', img:'动画/砖块旋转/封面.webp' },
       { idx:1, title:'CR盒子产品动画', tags:'C4D · 产品动画', vid:'动画/CR盒子产品动画/输出视频.webm', img:'动画/CR盒子产品动画/封面.webp' },
+      { idx:16, title:'Ai-蜂蜜圆罐动画', tags:'AIGC · AI生成', vid:'动画/Ai-蜂蜜圆罐动画/Ai-蜂蜜圆罐动画.webm', img:'动画/Ai-蜂蜜圆罐动画/封面.webp', isAi:true },
     ];
 
     // 静帧合集（不在主页显示的）
     const portfolioStillHTML = [
-      { idx:11, title:'散DeMain', tags:'3ds Max · 产品渲染', img:'静帧/散DeMain0000.webp' },
-      { idx:12, title:'最终出图', tags:'C4D · 产品渲染', img:'静帧/最终出图.webp' },
-      { idx:13, title:'最终出图(无产品)', tags:'C4D · 产品渲染', img:'静帧/最终出图(无产品).webp' },
-      { idx:14, title:'并排局部', tags:'C4D · 产品渲染', img:'静帧/并排局部.webp' },
-      { idx:15, title:'CT0318 (1)', tags:'C4D · 产品渲染', img:'静帧/CT0318 (1).webp' },
-      { idx:16, title:'CT0318 (2)', tags:'C4D · 产品渲染', img:'静帧/CT0318 (2).webp' },
-      { idx:17, title:'CT0318', tags:'C4D · 产品渲染', img:'静帧/CT0318.webp' },
-      { idx:18, title:'MD99687', tags:'3ds Max · 产品渲染', img:'静帧/MD99687.webp' },
-      { idx:19, title:'MD99987', tags:'3ds Max · 产品渲染', img:'静帧/MD99987.webp' },
-      { idx:20, title:'SD167277', tags:'C4D · 产品渲染', img:'静帧/SD167277.webp' },
-      { idx:21, title:'最终渲染', tags:'C4D · 产品渲染', img:'静帧/最终渲染.webp' },
-      { idx:22, title:'耳机白底图', tags:'C4D · 产品渲染', img:'静帧/耳机白底图.webp' },
-      { idx:23, title:'化妆品', tags:'C4D · 产品渲染', img:'静帧/化妆品.webp' },
-      { idx:24, title:'化妆品-2', tags:'C4D · 产品渲染', img:'静帧/化妆品-2.webp' },
-      { idx:25, title:'化妆品-3', tags:'C4D · 产品渲染', img:'静帧/化妆品-3.webp' },
-      { idx:26, title:'化妆品-4', tags:'C4D · 产品渲染', img:'静帧/化妆品-4.webp' },
-      { idx:27, title:'金属新脏', tags:'3ds Max · 材质渲染', img:'静帧/金属新脏.webp' },
-      { idx:28, title:'金属樱桃材质', tags:'3ds Max · 材质渲染', img:'静帧/金属樱桃材质.webp' },
-      { idx:29, title:'汽车', tags:'3ds Max · 产品渲染', img:'静帧/汽车.webp' },
-      { idx:30, title:'汽车-2', tags:'3ds Max · 产品渲染', img:'静帧/汽车-2.webp' },
-      { idx:31, title:'热水器内部', tags:'3ds Max · 产品渲染', img:'静帧/热水器内部.webp' },
-      { idx:32, title:'色卡', tags:'C4D · 材质渲染', img:'静帧/色卡.webp' },
-      { idx:33, title:'室内场景', tags:'3ds Max · 场景渲染', img:'静帧/室内场景.webp' },
-      { idx:34, title:'手表', tags:'3ds Max · 产品渲染', img:'静帧/手表.webp' },
-      { idx:35, title:'水精华', tags:'C4D · 产品渲染', img:'静帧/水精华.webp' },
-      { idx:36, title:'无人机', tags:'3ds Max · 产品渲染', img:'静帧/无人机.webp' },
-      { idx:37, title:'鞋子渲染', tags:'3ds Max · 产品渲染', img:'静帧/鞋子渲染.webp' },
-      { idx:38, title:'音箱', tags:'C4D · 产品渲染', img:'静帧/音箱.webp' },
-      { idx:39, title:'Ipad', tags:'C4D · 产品渲染', img:'静帧/Ipad.webp' },
-      { idx:40, title:'电子烟-1', tags:'C4D · 产品渲染', img:'静帧/电子烟-1.webp' },
-      { idx:41, title:'电子烟-2', tags:'C4D · 产品渲染', img:'静帧/电子烟-2.webp' },
-      { idx:42, title:'圆玻璃管', tags:'C4D · 产品渲染', img:'静帧/圆玻璃管-1.webp' },
-      { idx:43, title:'圆铁罐-1', tags:'C4D · 产品渲染', img:'静帧/圆铁罐-1.webp' },
-      { idx:44, title:'圆铁罐-2', tags:'C4D · 产品渲染', img:'静帧/圆铁罐-2.webp' },
-      { idx:45, title:'圆铁罐-3', tags:'C4D · 产品渲染', img:'静帧/圆铁罐-3.webp' },
-      { idx:46, title:'圆铁罐-4', tags:'C4D · 产品渲染', img:'静帧/圆铁罐-4.webp' },
-      { idx:47, title:'2026-03-31', tags:'C4D · 产品渲染', img:'静帧/2026-03-31 (2).webp' },
-      { idx:48, title:'2026-04-13', tags:'C4D · 产品渲染', img:'静帧/2026-04-13.webp' },
-      { idx:49, title:'5', tags:'C4D · 产品渲染', img:'静帧/5.webp' },
-      { idx:50, title:'6', tags:'C4D · 产品渲染', img:'静帧/6.webp' },
-      { idx:51, title:'7', tags:'C4D · 产品渲染', img:'静帧/7.webp' },
-      { idx:52, title:'8', tags:'C4D · 产品渲染', img:'静帧/8.webp' },
-      { idx:53, title:'CT0330', tags:'C4D · 产品渲染', img:'静帧/CT0330.webp' },
-      { idx:54, title:'Gemini 1', tags:'AIGC · AI生成', img:'静帧/Gemini_Generated_Image_1csyre1csyre1csy.webp' },
-      { idx:55, title:'Gemini 2', tags:'AIGC · AI生成', img:'静帧/Gemini_Generated_Image_oyy9z9oyy9z9oyy9.webp' },
-      { idx:56, title:'场景', tags:'C4D · 场景渲染', img:'静帧/场景.webp' },
-      { idx:57, title:'DeMain 静帧', tags:'3ds Max · 产品渲染', img:'静帧/总_DeMain_0000.webp' },
+      { idx:11, title:'Ai-1', tags:'AIGC · AI生成', img:'静帧/Ai-1.webp', isAi:true },
+      { idx:12, title:'Ai-10', tags:'AIGC · AI生成', img:'静帧/Ai-10.webp', isAi:true },
+      { idx:13, title:'Ai-11', tags:'AIGC · AI生成', img:'静帧/Ai-11.webp', isAi:true },
+      { idx:14, title:'Ai-12', tags:'AIGC · AI生成', img:'静帧/Ai-12.webp', isAi:true },
+      { idx:15, title:'Ai-13', tags:'AIGC · AI生成', img:'静帧/Ai-13.webp', isAi:true },
+      { idx:16, title:'Ai-14', tags:'AIGC · AI生成', img:'静帧/Ai-14.webp', isAi:true },
+      { idx:17, title:'Ai-15', tags:'AIGC · AI生成', img:'静帧/Ai-15.webp', isAi:true },
+      { idx:18, title:'Ai-16', tags:'AIGC · AI生成', img:'静帧/Ai-16.webp', isAi:true },
+      { idx:19, title:'Ai-17', tags:'AIGC · AI生成', img:'静帧/Ai-17.webp', isAi:true },
+      { idx:20, title:'Ai-2', tags:'AIGC · AI生成', img:'静帧/Ai-2.webp', isAi:true },
+      { idx:21, title:'Ai-3', tags:'AIGC · AI生成', img:'静帧/Ai-3.webp', isAi:true },
+      { idx:22, title:'Ai-4', tags:'AIGC · AI生成', img:'静帧/Ai-4.webp', isAi:true },
+      { idx:23, title:'Ai-5', tags:'AIGC · AI生成', img:'静帧/Ai-5.webp', isAi:true },
+      { idx:24, title:'Ai-6', tags:'AIGC · AI生成', img:'静帧/Ai-6.webp', isAi:true },
+      { idx:25, title:'Ai-7', tags:'AIGC · AI生成', img:'静帧/Ai-7.webp', isAi:true },
+      { idx:26, title:'Ai-8', tags:'AIGC · AI生成', img:'静帧/Ai-8.webp', isAi:true },
+      { idx:27, title:'Ai-9', tags:'AIGC · AI生成', img:'静帧/Ai-9.webp', isAi:true },
+      { idx:28, title:'CR 焊接铁罐', tags:'C4D · 产品渲染', img:'静帧/CR 焊接铁罐.webp', isAi:false },
+      { idx:29, title:'CT0318 (1)', tags:'C4D · 产品渲染', img:'静帧/CT0318 (1).webp', isAi:false },
+      { idx:30, title:'CT0318 (2)', tags:'C4D · 产品渲染', img:'静帧/CT0318 (2).webp', isAi:false },
+      { idx:31, title:'CT0318', tags:'C4D · 产品渲染', img:'静帧/CT0318.webp', isAi:false },
+      { idx:32, title:'in', tags:'C4D · 产品渲染', img:'静帧/in.webp', isAi:false },
+      { idx:33, title:'MD99687', tags:'C4D · 产品渲染', img:'静帧/MD99687.webp', isAi:false },
+      { idx:34, title:'MD99987', tags:'C4D · 产品渲染', img:'静帧/MD99987.webp', isAi:false },
+      { idx:35, title:'SD167277', tags:'C4D · 产品渲染', img:'静帧/SD167277.webp', isAi:false },
+      { idx:36, title:'t', tags:'C4D · 产品渲染', img:'静帧/t.webp', isAi:false },
+      { idx:37, title:'圆铁罐-1', tags:'C4D · 产品渲染', img:'静帧/圆铁罐-1.webp', isAi:false },
+      { idx:38, title:'圆铁罐-3', tags:'C4D · 产品渲染', img:'静帧/圆铁罐-3.webp', isAi:false },
+      { idx:39, title:'圆铁罐-4', tags:'C4D · 产品渲染', img:'静帧/圆铁罐-4.webp', isAi:false },
+      { idx:40, title:'并排局部', tags:'C4D · 产品渲染', img:'静帧/并排局部.webp', isAi:false },
+      { idx:41, title:'散DeMain0000', tags:'C4D · 产品渲染', img:'静帧/散DeMain0000.webp', isAi:false },
+      { idx:42, title:'最终出图(无产品)', tags:'C4D · 产品渲染', img:'静帧/最终出图(无产品).webp', isAi:false },
+      { idx:43, title:'最终出图', tags:'C4D · 产品渲染', img:'静帧/最终出图.webp', isAi:false },
     ];
 
     function buildStillCard(data){
+      const aiBadge = data.isAi ? '<span class="badge-ai">AI</span>' : '';
       return `<div class="work-card" data-index="${data.idx}" data-title="${data.title}" data-tags="${data.tags}" data-isvid="0">
         <div class="work-thumb">
           <img src="${data.img}" alt="${data.title}" loading="lazy">
           <span class="badge-type">静帧</span>
+          ${aiBadge}
           <div class="work-overlay"><div class="overlay-icon">+</div><div class="overlay-text">查看大图</div></div>
-        </div>
-        <div class="work-info-bar">
-          <span class="work-info-name">${data.title}</span>
-          <span class="work-info-tags">${data.tags.replace(/ · /g,'<span>·</span>')}</span>
         </div>
       </div>`;
     }
 
     function buildAnimFeaturedCard(data){
+      const aiBadge = data.isAi ? '<span class="badge-ai">AI</span>' : '';
       return `<div class="work-card featured-card" data-index="${data.idx}" data-title="${data.title}" data-tags="${data.tags}" data-isvid="1">
         <div class="work-thumb">
           <img src="${data.img}" alt="${data.title}" loading="lazy">
           <span class="badge-type">动画</span>
           <div class="badge-vid"><svg viewBox="0 0 12 12"><polygon points="3,1 11,6 3,11"/></svg></div>
+          ${aiBadge}
           <div class="work-overlay"><div class="overlay-icon">▶</div><div class="overlay-text">播放视频</div></div>
-        </div>
-        <div class="work-info-bar">
-          <span class="work-info-name">${data.title}</span>
-          <span class="work-info-tags">${data.tags.replace(/ · /g,'<span>·</span>')}</span>
         </div>
       </div>`;
     }
 
     function buildAnimModalCard(data){
+      const aiBadge = data.isAi ? '<span class="badge-ai">AI</span>' : '';
       return `<div class="work-card" data-index="${data.idx}" data-title="${data.title}" data-tags="${data.tags}" data-isvid="1">
         <div class="work-thumb">
           <img src="${data.img}" alt="${data.title}" loading="lazy">
           <span class="badge-type">动画</span>
           <div class="badge-vid"><svg viewBox="0 0 12 12"><polygon points="3,1 11,6 3,11"/></svg></div>
+          ${aiBadge}
           <div class="work-overlay"><div class="overlay-icon">▶</div><div class="overlay-text">播放视频</div></div>
-        </div>
-        <div class="work-info-bar">
-          <span class="work-info-name">${data.title}</span>
-          <span class="work-info-tags">${data.tags.replace(/ · /g,'<span>·</span>')}</span>
         </div>
       </div>`;
     }
@@ -1699,12 +1668,12 @@
     const sliderTrack = document.getElementById('sliderTrack');
 
     const labelSets = {
-      zh: ['精选浏览','动画 01','动画 02','动画 03','动画 04','动画 05','静帧 01','静帧 02','静帧 03','静帧 04'],
-      en: ['Featured','Anim 01','Anim 02','Anim 03','Anim 04','Anim 05','Still 01','Still 02','Still 03','Still 04']
+      zh: ['精选浏览','动画 01','动画 02','动画 03','动画 04','动画 05','静帧 01','静帧 02','静帧 03','静帧 04','静帧 05'],
+      en: ['Featured','Anim 01','Anim 02','Anim 03','Anim 04','Anim 05','Still 01','Still 02','Still 03','Still 04','Still 05']
     };
 
-    // 8 dots for 8 featured cards (hero=0, anim cards 1-5, still cards 6-9)
-    const DOT_COUNT = 10;
+    // 11 dots for 10 featured cards (5 anim + 5 still) + header
+    const DOT_COUNT = 11;
     const dots = [];
     for(let i=0;i<DOT_COUNT;i++){
       const d = document.createElement('div');
