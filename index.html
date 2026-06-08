@@ -532,6 +532,43 @@
       pointer-events: none;
     }
     .work-card.is-playing .preview-vid { opacity: 1; }
+    
+    /* ── Lazy Loading ─────────────────────────────────────── */
+    .work-card.is-loaded .work-thumb img { opacity: 1; }
+    .work-thumb img { opacity: 0; transition: opacity .5s ease; }
+    .work-thumb[data-loaded] img { opacity: 1; }
+    
+    /* 骨架屏闪光 */
+    .work-thumb::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg,
+        var(--card-bg) 25%,
+        rgba(212,149,106,.06) 50%,
+        var(--card-bg) 75%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
+      z-index: 0; pointer-events: none;
+    }
+    .work-card.is-loaded .work-thumb::before,
+    .work-thumb[data-loaded]::before {
+      display: none;
+    }
+    @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+    
+    /* 视频加载指示器 */
+    .vid-loading-spinner {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      background: rgba(9,9,12,.6); z-index: 5; pointer-events: none;
+    }
+    .vid-loading-spinner::after {
+      content: ''; width: 28px; height: 28px;
+      border: 2px solid rgba(212,149,106,.3);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: vidSpin .7s linear infinite;
+    }
+    @keyframes vidSpin { to { transform: rotate(360deg); } }
     body.light-mode .work-overlay { background: rgba(245,243,239,.7); }
     .overlay-icon { font-family: var(--ff-head); font-size: 36px; font-weight: 300; color: var(--accent); line-height: 1; margin-bottom: 8px; }
     .overlay-text { font-family: var(--ff-mono); font-size: 9px; letter-spacing: .18em; text-transform: uppercase; color: var(--text); }
@@ -901,35 +938,35 @@
         <div class="works-grid featured-grid" id="stillGrid">
           <div class="work-card featured-card" data-index="5" data-title="DeMain 静帧渲染" data-tags="3ds Max · 产品渲染" data-isvid="0">
             <div class="work-thumb">
-              <img src="静帧/总_DeMain_0000.webp" alt="DeMain渲染" loading="lazy">
+              <img src="静帧/总_DeMain_0000.webp" alt="DeMain渲染" class="lazy-img">
               <span class="badge-type">静帧</span>
               <div class="work-overlay"><div class="overlay-icon">+</div><div class="overlay-text">查看大图</div></div>
             </div>
           </div>
           <div class="work-card featured-card" data-index="6" data-title="最终渲染" data-tags="C4D · 产品渲染" data-isvid="0">
             <div class="work-thumb">
-              <img src="静帧/最终渲染.webp" alt="最终渲染" loading="lazy">
+              <img src="静帧/最终渲染.webp" alt="最终渲染" class="lazy-img">
               <span class="badge-type">静帧</span>
               <div class="work-overlay"><div class="overlay-icon">+</div><div class="overlay-text">查看大图</div></div>
             </div>
           </div>
           <div class="work-card featured-card" data-index="7" data-title="Mint Tin CR" data-tags="3ds Max · 包装渲染" data-isvid="0">
             <div class="work-thumb">
-              <img src="静帧/MH39402 Operation Grow Butter CR AT Mint Tin_Rendering (2).webp" alt="Mint Tin" loading="lazy">
+              <img src="静帧/MH39402 Operation Grow Butter CR AT Mint Tin_Rendering (2).webp" alt="Mint Tin" class="lazy-img">
               <span class="badge-type">静帧</span>
               <div class="work-overlay"><div class="overlay-icon">+</div><div class="overlay-text">查看大图</div></div>
             </div>
           </div>
           <div class="work-card featured-card" data-index="8" data-title="Round Tins" data-tags="3ds Max · 包装渲染" data-isvid="0">
             <div class="work-thumb">
-              <img src="静帧/NE122137 Treeworks Cann Cream & ProSport D76xH29mm Round Tins_Rendering.webp" alt="Round Tins" loading="lazy">
+              <img src="静帧/NE122137 Treeworks Cann Cream & ProSport D76xH29mm Round Tins_Rendering.webp" alt="Round Tins" class="lazy-img">
               <span class="badge-type">静帧</span>
               <div class="work-overlay"><div class="overlay-icon">+</div><div class="overlay-text">查看大图</div></div>
             </div>
           </div>
           <div class="work-card featured-card" data-index="9" data-title="CT0330 渲染" data-tags="C4D · 产品渲染" data-isvid="0">
             <div class="work-thumb">
-              <img src="静帧/CT0330.webp" alt="CT0330" loading="lazy">
+              <img src="静帧/CT0330.webp" alt="CT0330" class="lazy-img">
               <span class="badge-type">静帧</span>
               <div class="work-overlay"><div class="overlay-icon">+</div><div class="overlay-text">查看大图</div></div>
             </div>
@@ -1272,7 +1309,7 @@
       const aiBadge = data.isAi ? '<span class="badge-ai">AI</span>' : '';
       return `<div class="work-card" data-index="${data.idx}" data-title="${data.title}" data-tags="${data.tags}" data-isvid="0">
         <div class="work-thumb">
-          <img src="${data.img}" alt="${data.title}" loading="lazy">
+          <img src="${data.img}" alt="${data.title}" class="lazy-img">
           <span class="badge-type">静帧</span>
           ${aiBadge}
           <div class="work-overlay"><div class="overlay-icon">+</div><div class="overlay-text">查看大图</div></div>
@@ -1282,9 +1319,9 @@
 
     function buildAnimFeaturedCard(data){
       const aiBadge = data.isAi ? '<span class="badge-ai">AI</span>' : '';
-      return `<div class="work-card featured-card" data-index="${data.idx}" data-title="${data.title}" data-tags="${data.tags}" data-isvid="1">
+      return `<div class="work-card featured-card" data-index="${data.idx}" data-title="${data.title}" data-tags="${data.tags}" data-isvid="1" data-vid="${data.vid}" data-poster="${data.img}">
         <div class="work-thumb">
-          <img src="${data.img}" alt="${data.title}" loading="lazy">
+          <img src="${data.img}" alt="${data.title}" class="lazy-img">
           <span class="badge-type">动画</span>
           <div class="badge-vid"><svg viewBox="0 0 12 12"><polygon points="3,1 11,6 3,11"/></svg></div>
           ${aiBadge}
@@ -1295,9 +1332,9 @@
 
     function buildAnimModalCard(data){
       const aiBadge = data.isAi ? '<span class="badge-ai">AI</span>' : '';
-      return `<div class="work-card" data-index="${data.idx}" data-title="${data.title}" data-tags="${data.tags}" data-isvid="1">
+      return `<div class="work-card" data-index="${data.idx}" data-title="${data.title}" data-tags="${data.tags}" data-isvid="1" data-vid="${data.vid}" data-poster="${data.img}">
         <div class="work-thumb">
-          <img src="${data.img}" alt="${data.title}" loading="lazy">
+          <img src="${data.img}" alt="${data.title}" class="lazy-img">
           <span class="badge-type">动画</span>
           <div class="badge-vid"><svg viewBox="0 0 12 12"><polygon points="3,1 11,6 3,11"/></svg></div>
           ${aiBadge}
@@ -1452,74 +1489,135 @@
 
     allLBCards.forEach((card,i)=>{ card.addEventListener('click',()=>openLB(i)); });
 
-    // ── Video Preview on Hover ────────────────────────────────
+    // ── Lazy Load + Cover-First Video ─────────────────────────
     const previewTimers = {};
+    const loadedCards = new WeakSet();    // 跟踪已进入视口的卡片
+    const vidPool    = new Map();          // card → { vid, loaded }
 
+    // Intersection Observer: 卡片进入视口 → 标记加载 + 创建 video 占位
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const card = entry.target;
+        if (loadedCards.has(card)) return;
+        loadedCards.add(card);
+        cardObserver.unobserve(card);
+
+        // 标记卡片已加载 → 触发 img 淡入
+        card.classList.add('is-loaded');
+
+        // 动画卡片：预创建 video 元素但不设 src（封面优先）
+        if (card.dataset.isvid === '1' && !vidPool.has(card)) {
+          const thumb = card.querySelector('.work-thumb');
+          if (!thumb) return;
+
+          const v = document.createElement('video');
+          v.className = 'preview-vid';
+          v.muted = true;
+          v.loop = false;
+          v.playsInline = true;
+          // 用封面图当 poster，视频未加载时显示封面
+          v.poster = card.dataset.poster || '';
+          v.preload = 'none';  // 不预加载，等 hover 再加载
+          thumb.appendChild(v);
+
+          vidPool.set(card, { vid: v, loaded: false });
+        }
+      });
+    }, { rootMargin: '300px 0px', threshold: 0.01 });
+
+    // 观察所有作品卡片
+    document.querySelectorAll('.work-card[data-index]').forEach(card => {
+      cardObserver.observe(card);
+    });
+
+    // ── Hover Preview: 封面优先，hover 才加载视频 ──────────────
     allLBCards.forEach(card => {
-      if(card.dataset.isvid !== '1') return;
+      if (card.dataset.isvid !== '1') return;
+
+      // 获取 vid URL
       const idx = parseInt(card.dataset.index);
       const animData = allAnimData.find(d => d.idx === idx);
-      if(!animData) return;
-
-      const thumb = card.querySelector('.work-thumb');
-      if(!thumb) return;
-
-      // 创建 video 预览元素
-      const vid = document.createElement('video');
-      vid.className = 'preview-vid';
-      vid.src = animData.vid;
-      vid.muted = true;
-      vid.loop = false;
-      vid.playsInline = true;
-      vid.preload = 'metadata';  // 先加载元数据
-      thumb.appendChild(vid);
+      if (!animData) return;
 
       let enterTimer = null;
 
-      // 统一播放函数
+      function ensureVid() {
+        let pool = vidPool.get(card);
+        if (!pool) {
+          // 卡片还没进视口就 hover 了 → 临时创建
+          const thumb = card.querySelector('.work-thumb');
+          if (!thumb) return null;
+          const v = document.createElement('video');
+          v.className = 'preview-vid';
+          v.muted = true; v.loop = false; v.playsInline = true;
+          v.poster = card.dataset.poster || '';
+          v.preload = 'none';
+          thumb.appendChild(v);
+          pool = { vid: v, loaded: false };
+          vidPool.set(card, pool);
+        }
+        return pool;
+      }
+
+      function loadAndPlay(pool) {
+        if (pool.loaded) {
+          // 已加载过，直接播放
+          pool.vid.currentTime = 0;
+          pool.vid.play().then(() => card.classList.add('is-playing')).catch(() => {});
+          return;
+        }
+
+        // 首次加载：设 src → 等待 canplay → 播放
+        const spinner = document.createElement('div');
+        spinner.className = 'vid-loading-spinner';
+        pool.vid.parentElement.appendChild(spinner);
+
+        pool.vid.src = animData.vid;
+        pool.vid.load();
+
+        pool.vid.addEventListener('canplay', function onReady() {
+          pool.vid.removeEventListener('canplay', onReady);
+          spinner.remove();
+          pool.loaded = true;
+          pool.vid.play().then(() => card.classList.add('is-playing')).catch(() => {});
+        }, { once: true });
+      }
+
       function startPreview() {
         clearTimeout(enterTimer);
         enterTimer = setTimeout(() => {
-          vid.currentTime = 0;
-          // 等待视频准备好
-          if (vid.readyState >= 3) {
-            vid.play().then(() => {
-              card.classList.add('is-playing');
-            }).catch(() => {});
-          } else {
-            vid.addEventListener('canplay', function onReady() {
-              vid.removeEventListener('canplay', onReady);
-              vid.play().then(() => {
-                card.classList.add('is-playing');
-              }).catch(() => {});
-            });
-          }
-          // 3秒后自动停止
+          const pool = ensureVid();
+          if (!pool) return;
+          loadAndPlay(pool);
+
           clearTimeout(previewTimers[idx]);
           previewTimers[idx] = setTimeout(() => {
             card.classList.remove('is-playing');
-            vid.pause();
-            vid.currentTime = 0;
+            if (pool.vid) { pool.vid.pause(); pool.vid.currentTime = 0; }
           }, 3500);
         }, 350);
       }
 
-      // 桌面端 hover
       card.addEventListener('mouseenter', startPreview);
-
-      // 移动端触摸触发
-      card.addEventListener('touchstart', () => {
-        startPreview();
-      }, { passive: true });
-
+      card.addEventListener('touchstart', startPreview, { passive: true });
       card.addEventListener('mouseleave', () => {
         clearTimeout(enterTimer);
         clearTimeout(previewTimers[idx]);
         card.classList.remove('is-playing');
-        vid.pause();
-        vid.currentTime = 0;
+        const pool = vidPool.get(card);
+        if (pool && pool.vid) { pool.vid.pause(); pool.vid.currentTime = 0; }
       });
     });
+
+    // 弹窗内新增卡片也注册 observer
+    const modalCardObserver = new MutationObserver(() => {
+      document.querySelectorAll('.work-card[data-index]:not(.is-loaded)').forEach(card => {
+        cardObserver.observe(card);
+      });
+    });
+    modalCardObserver.observe(document.getElementById('animModal'), { childList: true, subtree: true });
+    modalCardObserver.observe(document.getElementById('stillModal'), { childList: true, subtree: true });
     lbClose.addEventListener('click',e=>{ e.preventDefault(); closeLB(); });
     lbPrev.addEventListener('click',prevLB);
     lbNext.addEventListener('click',nextLB);
